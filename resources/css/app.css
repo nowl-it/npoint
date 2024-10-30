@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	body {
+		@apply bg-gray-50;
+	}
+
+	nowl-alert {
+		@apply fixed bottom-4 right-4 z-50 transform cursor-pointer select-none rounded-lg bg-white p-4 py-2 transition-all active:scale-95;
+
+		&[alert='info'] {
+			@apply bg-blue-100 text-blue-800;
+		}
+
+		&[alert='success'] {
+			@apply bg-green-100 text-green-800;
+		}
+
+		&[alert='warning'] {
+			@apply bg-yellow-100 text-yellow-800;
+		}
+
+		&[alert='danger'] {
+			@apply bg-red-100 text-red-800;
+		}
+	}
+
+	.tooltip {
+		@apply invisible absolute z-50 transform select-none whitespace-nowrap rounded-md bg-gray-700 p-2 text-center text-sm text-white opacity-0 transition-opacity duration-300 group-hover:visible group-hover:opacity-100;
+		&[side='left'] {
+			@apply left-0;
+		}
+		&[side='right'] {
+			@apply right-0;
+		}
+		&[side='center'] {
+			@apply left-1/2 -translate-x-1/2;
+		}
+		&[position='top'] {
+			@apply top-0 -translate-y-full;
+		}
+		&[position='bottom'] {
+			@apply bottom-0 translate-y-full;
+		}
+		&[position='center'] {
+			@apply top-1/2 -translate-y-1/2;
+		}
+		&[start='left'] {
+			@apply translate-x-0;
+		}
+		&[start='right'] {
+			@apply -translate-x-full;
+		}
+		&[debug='true'] {
+			@apply visible opacity-100;
+		}
+	}
+
+	.card {
+		@apply min-h-32 w-fit min-w-96 rounded-lg bg-white p-4 shadow-md;
+	}
+}

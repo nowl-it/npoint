@@ -1,0 +1,31 @@
+{
+	"arrowParens": "always",
+	"bracketSpacing": true,
+	"jsxSingleQuote": false,
+	"printWidth": 120,
+	"proseWrap": "preserve",
+	"quoteProps": "as-needed",
+	"semi": true,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"trailingComma": "none",
+	"useTabs": true,
+	"vueIndentScriptAndStyle": false,
+	"endOfLine": "lf",
+	"plugins": [
+		"prettier-plugin-blade",
+		"prettier-plugin-tailwindcss",
+		"@trivago/prettier-plugin-sort-imports",
+		"prettier-plugin-organize-imports"
+	],
+	"overrides": [
+		{
+			"files": [
+				"*.blade.php"
+			],
+			"options": {
+				"parser": "blade"
+			}
+		}
+	]
+}

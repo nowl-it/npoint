@@ -1,0 +1,7 @@
+{
+	"default": true,
+	"line_length": false,
+	"ol-prefix": false,
+	"list-marker-space": false,
+	"no-duplicate-heading": false
+}
