@@ -2,6 +2,25 @@
 
 Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi lại trong tệp này
 
+## 2024-10-31
+
+### Added
+
+-   Thêm [README](README.md)
+-   Thêm [images folder](.images)
+
+### Changed
+
+-   Thay đổi đường dẫn các files
+
+### Bug
+
+-   Không có bug gì.
+
+### Fixed
+
+-   Không có lỗi gì.
+
 ## 2024-10-30
 
 ### Added
@@ -24,4 +43,4 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi lạ
 
 ## License
 
-Phân phối theo giấy phép [Apache License 2.0](LICENSE).
+Phân phối theo giấy phép [Apache License 2.0](LICENSE.md).
