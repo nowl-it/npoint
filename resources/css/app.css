@@ -59,6 +59,6 @@
 	}
 
 	.card {
-		@apply min-h-32 w-fit min-w-96 rounded-lg bg-white p-4 shadow-md;
+		@apply rounded-lg bg-white p-4 shadow-md;
 	}
 }

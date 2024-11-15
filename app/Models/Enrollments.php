@@ -9,28 +9,16 @@ class Enrollments extends Model
 {
 	use HasFactory;
 
-	protected $table = 'enrollments'; // Tên bảng
+	protected $primaryKey = 'enrollment_id';
+	protected $fillable = ['student_id', 'class_id'];
 
-	protected $fillable = [
-		'student_id',
-		'course_id',
-	];
-
-	// Thiết lập mối quan hệ với Student
-	public function students()
+	public function student()
 	{
-		return $this->belongsTo(Students::class);
+		return $this->belongsTo(Students::class, 'student_id', 'student_id');
 	}
 
-	// Thiết lập mối quan hệ với Course
-	public function courses()
+	public function class()
 	{
-		return $this->belongsTo(Courses::class);
-	}
-
-	// Thiết lập mối quan hệ với Attendance
-	public function attendances()
-	{
-		return $this->hasMany(Attendances::class);
+		return $this->belongsTo(Classes::class, 'class_id', 'class_id');
 	}
 }

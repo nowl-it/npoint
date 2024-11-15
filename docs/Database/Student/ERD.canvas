@@ -1,9 +1,0 @@
-{
-	"nodes":[
-		{"id":"0c40861c1c40e804","type":"text","text":"`Student`","x":-60,"y":-180,"width":250,"height":60,"color":"1"},
-		{"id":"882e06be5b20b9aa","type":"text","text":"`id`\nStudent ID","x":140,"y":20,"width":250,"height":60}
-	],
-	"edges":[
-		{"id":"f2de510c063bac96","fromNode":"0c40861c1c40e804","fromSide":"right","toNode":"882e06be5b20b9aa","toSide":"top"}
-	]
-}

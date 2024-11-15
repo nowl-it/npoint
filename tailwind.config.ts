@@ -19,6 +19,9 @@ const config = {
 			gridTemplateColumns: {
 				layout: 'auto auto 1fr'
 			},
+			gridTemplateRows: {
+				content: 'masonry'
+			},
 			keyframes: {
 				'alert-in': {
 					'0%': {
@@ -53,7 +56,8 @@ const config = {
 		require('@tailwindcss/forms'),
 		require('@tailwindcss/typography'),
 		require('@savvywombat/tailwindcss-grid-areas'),
-		require('tailwindcss-animate')
+		require('tailwindcss-animate'),
+		require('tailwind-scrollbar')
 	]
 } satisfies Config;
 

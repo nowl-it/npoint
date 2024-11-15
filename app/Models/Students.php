@@ -9,16 +9,21 @@ class Students extends Model
 {
 	use HasFactory;
 
-	protected $table = 'students'; // Tên bảng
+	protected $primaryKey = 'student_id';
+	protected $fillable = ['first_name', 'last_name', 'birth_date', 'address', 'class_id'];
 
-	protected $fillable = [
-		'full_name',
-		'dob',
-	];
+	public function class()
+	{
+		return $this->belongsTo(Classes::class, 'class_id', 'class_id');
+	}
 
-	// Thiết lập mối quan hệ với Enrollment
 	public function enrollments()
 	{
-		return $this->hasMany(Enrollments::class);
+		return $this->hasMany(Enrollments::class, 'student_id', 'student_id');
+	}
+
+	public function attendanceDetails()
+	{
+		return $this->hasMany(AttendanceDetails::class, 'student_id', 'student_id');
 	}
 }

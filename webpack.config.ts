@@ -2,9 +2,13 @@ import path from 'path';
 import { Configuration } from 'webpack';
 
 const config: Configuration = {
-	entry: './ts/app.ts', // Điểm đầu vào của TypeScript
+	entry: {
+		app: './ts/app.ts',
+		'pages/admin/global': './ts/pages/admin/global.ts',
+		'pages/admin/index': './ts/pages/admin/index.ts'
+	},
 	output: {
-		filename: 'app.js', // File đầu ra
+		filename: '[name].js', // File đầu ra
 		path: path.resolve(__dirname, './resources/js') // Thư mục chứa file đầu ra
 	},
 	resolve: {
@@ -22,7 +26,7 @@ const config: Configuration = {
 			}
 		]
 	},
-	mode: 'production' // Hoặc 'development' nếu bạn đang phát triển
+	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 };
 
 export default config;

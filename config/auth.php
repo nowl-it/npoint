@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Accounts;
+
 return [
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
@@ -12,12 +14,12 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'account'),
-    ],
+	'defaults' => [
+		'guard' => env('AUTH_GUARD', 'web'),
+		'passwords' => env('AUTH_PASSWORD_BROKER', 'accounts'),
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
@@ -34,14 +36,19 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'account',
-        ],
-    ],
+	'guards' => [
+		'web' => [
+			'driver' => 'session',
+			'provider' => 'accounts',
+			'hash' => true
+		],
+		'api' => [
+			'driver' => 'passport',
+			'provider' => 'accounts',
+		],
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | User Providers
     |--------------------------------------------------------------------------
@@ -58,14 +65,14 @@ return [
     |
     */
 
-    'providers' => [
-        'account' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Account::class),
-        ],
-    ],
+	'providers' => [
+		'accounts' => [
+			'driver' => 'eloquent',
+			'model' => env('AUTH_MODEL', Accounts::class),
+		],
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
@@ -84,16 +91,16 @@ return [
     |
     */
 
-    'passwords' => [
-        'accounts' => [
-            'provider' => 'account',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-    ],
+	'passwords' => [
+		'accounts' => [
+			'provider' => 'accounts',
+			'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+			'expire' => 60,
+			'throttle' => 60,
+		],
+	],
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
     |--------------------------------------------------------------------------
@@ -104,6 +111,6 @@ return [
     |
     */
 
-    'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+	'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];

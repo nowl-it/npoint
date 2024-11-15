@@ -2,65 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
-use App\Models\Account;
-use App\Models\User;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function Login(): View
-    {
-        return view('pages.auth.login');
-    }
+	public function index(): View
+	{
+		return view('pages.auth');
+	}
 
-    public function Register(): View
-    {
-        return view('pages.auth.register');
-    }
+	public function AuthAction(AuthRequest $request): RedirectResponse
+	{
+		$credentials = $request->validate([
+			'username' => ['required', 'string', 'max:255', Rule::exists('accounts')],
+			'password' => ['required', 'string', 'min:8'],
+		]);
 
-    public function LoginAction(LoginRequest $request): RedirectResponse
-    {
-        $credentials = $request->getCredentials();
+		if (Auth::attempt($credentials)) {
+			$request->session()->regenerate();
 
-        if (! Auth::attempt($credentials)) {
-            return redirect()->back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-        }
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+			return redirect()->intended(route('dashboard'));
+		}
 
-        Auth::login($user);
+		return back()->withErrors([
+			'The provided credentials do not match our records.',
+		])->withInput(['username' => $request->username, 'password' => '']);
+	}
+	public function Logout(): RedirectResponse
+	{
+		Session::flush();
 
-        return redirect()->intended('/');
-    }
+		Auth::logout();
 
-    public function RegisterAction(
-        RegisterRequest $request
-    ): RedirectResponse {
-        $account = Account::create($request->validated());
-        $account_id = $account->id;
-
-        User::create([
-            'account_id' => $account_id,
-            'username' => $request->get('username'),
-        ]);
-
-        Auth::login($account);
-
-        return redirect()->route('auth.login')->with('success', 'Account created successfully');
-    }
-
-    public function Logout(): RedirectResponse
-    {
-        Session::flush();
-
-        Auth::logout();
-
-        return redirect()->route('auth.login');
-    }
+		return redirect()->route('auth');
+	}
 }

@@ -1,4 +1,4 @@
-import { HEADER } from './admin/header';
+import { HEADER } from './pages/admin/header';
 
 export default async function keymap() {
 	document.addEventListener('keydown', async (e) => {
